@@ -1,22 +1,30 @@
 // Dependencies
 // =============================================================
+var express = require("express");
+var router = express.Router();
+var path = require("path");
 
-// var path = require("path");
-
-// Routes
+// HTML Route Handling
 // =============================================================
-function routes(app,path){
-	// Basic route that sends the user first to the home Page
-	app.get("/", function(req, res) {
-	  res.sendFile(path.join(__dirname, "/app/public/home.html"));
-	});
 
-	// Displays the survey page
-	app.get("/survey", function(req, res) {
-	  res.sendFile(path.join(__dirname, "/app/public/survey.html"));
-	});
-};
+// Displays the home page
+router.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname, "../public/home.html"));
+});
 
-module.exports = routes;
+// Displays the survey page
+router.get("/survey", function(req, res) {
+  res.sendFile(path.join(__dirname, "../public/survey.html"));
+});
 
+// Loads custom CSS
+router.get("/assets/style.css", function(req, res) {
+  res.sendFile(path.join(__dirname, "../assets/css/style.css"));
+});
 
+// Loads custom JavaScript
+router.get("/assets/survey.js", function(req, res) {
+  res.sendFile(path.join(__dirname, "../assets/js/survey.js"));
+});
+
+module.exports = router;

@@ -1,31 +1,42 @@
 // Dependencies
 // =============================================================
-
+var express = require("express");
+var router = express.Router();
 var path = require("path");
 
-// Routes
+// Import Friends Data
+// =============================================================
+var friendsList = require("../data/friends");
+
+// API Route Handling
 // =============================================================
 
-// Displays all characters
-app.get("/api/friends", function(req, res) {
-  return res.json(friends);
+// Displays all friends
+router.get("/api/friends", function(req, res) {
+  return res.json(friendsList);
 });
 
-// Create New Characters - takes in JSON input
-app.post("/api/friends", function(req, res) {
-  // req.body hosts is equal to the JSON post sent from the user
-  // This works because of our body-parser middleware
+// Returns data from a single friend, or returns false
+router.get("/api/friends/:friend", function(req, res) {
+  var chosen = req.params.friend;
+
+  if(friendsList[chosen] !== undefined){
+      return res.json(friendsList[chosen]);
+  } else {
+      return res.json(false);
+  }
+});
+
+// Add new friend to list of available Friends
+router.post("/api/friends", function(req, res) {
+
   var newPerson = req.body;
 
-  console.log(newPerson);
+  // Add the new person to the friends array
+  friendsList.push(newPerson);
 
-  // newcharacter.routeName = newcharacter.name.replace(/\s+/g,"").toLowerCase();
-
-  // console.log(newcharacter);
-
-  // We then add the json the user sent to the character array
-  friends.push(newPerson);
-
-  // We then display the JSON to the users
+  // We then display the JSON to the user
   res.json(newPerson);
 });
+
+module.exports = router;
