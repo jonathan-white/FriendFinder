@@ -31,7 +31,6 @@ router.get("/api/friends/:friend", function(req, res) {
 router.post("/api/friends", function(req, res) {
 
   var newPerson = req.body;
-  
   var highestDiff = 40;
   var matches = [];
 
@@ -62,13 +61,6 @@ router.post("/api/friends", function(req, res) {
 
   // Add Match Percentage to the Best Match
   var matchPercentage = Math.round((highestDiff - bestMatch.difference) / highestDiff * 100);
-  // friendsList[bestMatch.person].matchPerc = matchPercentage;
-
-  // // Update the user's list of matched friends 
-  // friendsList[friendsList.length - 1].match = {
-  //   friend: bestMatch.person, 
-  //   percent: matchPercentage
-  // };
   
   // Update the best match's list of matched friends
   friendsList[bestMatch.person].match = {

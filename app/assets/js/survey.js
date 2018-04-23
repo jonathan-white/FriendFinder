@@ -12,18 +12,19 @@ $("#sendSurvey").on('click', function(event) {
 
 	if(formIsComplete()){
 		// Setup new person object
-		var newPerson = {
+		var newFriend = {
 			"name": $("#name").val().trim(),
 			"photo": $("#photo").val().trim(),
 			"scores": []
 		}
+
+		// TODO: Can this be done with a MAP?
 		for (var i = 0; i < 10; i++) {
-			newPerson.scores.push($("#question" + (i+1)).val());
+			newFriend.scores.push($("#question" + (i+1)).val());
 		}
 
 		// Post the new person's information then determine & display the best match
-		$.post("/api/friends", newPerson).then(function(data){
-		  	console.log(data);
+		$.post("/api/friends", newFriend).then(function(data){
 		  	if(data){
 				$("#match-perc").text(data.match.percent);
 
