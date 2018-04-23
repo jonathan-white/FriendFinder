@@ -31,11 +31,11 @@
 				<h2>About You</h2>
 				<div class="form-group">
 					<label for="name">Name (Required)</label>
-					<input type="text" class="form-control w-50" id="name" placeholder="Enter Your Name">
+					<input type="text" class="form-control w-50" id="name">
 				</div>
 				<div class="form-group">
 					<label for="photo">Link to Your Photo (Required)</label>
-					<input type="text" class="form-control w-50" id="photo" placeholder="Link to Your Photo">
+					<input type="text" class="form-control w-50" id="photo">
 				</div>
 			</div>
 
@@ -162,7 +162,7 @@
 				</select>
 			</div>
 		</form>
-		<button id="sendSurvey" type="submit" class="btn btn-primary btn-block" data-toggle="modal" data-target="#bestMatch">Submit</button>
+		<button id="sendSurvey" type="submit" class="btn btn-primary btn-block" data-toggle="modal" data-target="#bestMatchModal">Submit</button>
 		<!-- <button id="sendSurvey" type="submit" class="btn btn-primary btn-block">Submit</button> -->
 
 		<hr>
@@ -176,11 +176,11 @@
 	<!-- End Survey -->
 
 	<!-- Start Modal -->
-	<div class="modal fade" id="bestMatch" tabindex="-1" role="dialog" aria-labelledby="bestMatchLabel" aria-hidden="true">
+	<div class="modal fade" id="bestMatchModal" tabindex="-1" role="dialog" aria-labelledby="bestMatchModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="bestMatchLabel"><span id="match-perc">0</span>% Match</h5>
+	        <h5 class="modal-title" id="bestMatchModalLabel"><span id="match-perc">0</span>% Match</h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>

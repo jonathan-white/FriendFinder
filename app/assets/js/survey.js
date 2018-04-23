@@ -9,8 +9,8 @@ $(".question").chosen(chosenOptions);
 // User submits a survey
 $("#sendSurvey").on('click', function(event) {
 	event.preventDefault();
-	// console.log(formIsComplete);
-	// if(formIsComplete){
+
+	if(formIsComplete()){
 
 		var highestDiff = 40;
 
@@ -26,7 +26,7 @@ $("#sendSurvey").on('click', function(event) {
 
 		// Get the list of friends prior to adding the new friend
 		$.get("/api/friends", function(data){
-	  		// fetch updated friends array
+			// Setup array to hold each person in the friendslist and their difference from the new friend
 			var matches = [];
 
 			// Loop through friendsList to determine total difference between scores
@@ -53,7 +53,6 @@ $("#sendSurvey").on('click', function(event) {
 
 			// Use API to get the best match's name & photo; update the DOM
 			$.get("/api/friends/" + bestMatch.person, function(data){
-				// console.log(data);
 				if(data){
 					var matchPercentage = Math.round((highestDiff - bestMatch.difference) / highestDiff * 100);
 					$("#match-perc").text(matchPercentage);
@@ -73,11 +72,22 @@ $("#sendSurvey").on('click', function(event) {
 			  	console.log('survey.html', data);
 			});
 		});
-	// } else {
-	// 	alert("You must respond to all fields before submitting.");
-	// }
+	} else {
+		alert("You must respond to all fields before submitting.");
+	}
 });
 
+// Prevent Modal form from being shown if some fields have been missed.
+$('#bestMatchModal').on('show.bs.modal', function (e) {
+	if(formIsComplete()){
+		console.log('All fields have been completed, show modal.');
+	} else {
+		console.log('You must respond to all fields before submitting.');
+		e.preventDefault();
+	}
+});
+
+// Returns true if all fields have been completed; otherwise returns false
 function formIsComplete(){
 	var name = $("#name").val().trim();
 	var photo = $("#photo").val().trim();
