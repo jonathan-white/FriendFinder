@@ -21,23 +21,25 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.5/chosen.jquery.min.js"></script>
 
 	<!-- Custom Styles -->
+	<!-- <link rel="stylesheet" href="../assets/css/style.css"> -->
 	<link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
 	
 	<div class="container">
-		<div class="row m-4">
-			<div class="card" style="width: 18rem;">
-			  <img class="card-img-top" src="..." alt="Card image cap">
-			  <div class="card-body">
-			    <h5 class="card-title">Yoda</h5>
-			  </div>
-			</div>
-		</div>
+		<h1>Friends List</h1>
+		<hr>
+
+		<!-- Start Friends List -->
+		<div class="row d-flex flex-row friend-list"></div>
+		<!-- End Friends List -->
 
 		<!-- Start Footer -->
 		<footer>
-			<a href="/api/friends">API Friends List</a>
+			<a href="/">Home</a> | 
+			<a href="/api/friends">API Friends List</a> | 
+			<a href="/friends">Friends List</a> | 
+			<a href="https://github.com/jonathan-white/FriendFinder">GitHub Repo</a> 
 		</footer>
 		<!-- End Footer -->	
 	</div>
@@ -45,5 +47,8 @@
 	<!-- Bootstrap Scripts -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<!-- Custom Scripts -->
+	<script src="/assets/friendsList.js"></script>
 </body>
 </html>

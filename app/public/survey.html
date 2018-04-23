@@ -10,6 +10,9 @@
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+
 	<!-- JQuery -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -162,16 +165,22 @@
 				</select>
 			</div>
 		</form>
-		<button id="sendSurvey" type="submit" class="btn btn-primary btn-block" data-toggle="modal" data-target="#bestMatchModal">Submit</button>
+		<button id="sendSurvey" type="submit" class="btn btn-primary btn-block" data-toggle="modal" data-target="#bestMatchModal">
+			<i class="far fa-check-circle"></i>
+			Submit
+		</button>
 		<!-- <button id="sendSurvey" type="submit" class="btn btn-primary btn-block">Submit</button> -->
 
 		<hr>
 
 		<!-- Start Footer -->
-		<footer class="mb-5">
-			<a href="/api/friends">API Friends List</a>
+		<footer>
+			<a href="/">Home</a> | 
+			<a href="/api/friends">API Friends List</a> | 
+			<a href="/friends">Friends List</a> | 
+			<a href="https://github.com/jonathan-white/FriendFinder">GitHub Repo</a> 
 		</footer>
-		<!-- End Footer -->
+		<!-- End Footer -->	
 	</div>
 	<!-- End Survey -->
 
