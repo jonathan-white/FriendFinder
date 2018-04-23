@@ -11,9 +11,6 @@ $("#sendSurvey").on('click', function(event) {
 	event.preventDefault();
 
 	if(formIsComplete()){
-
-		var highestDiff = 40;
-
 		// Setup new person object
 		var newPerson = {
 			"name": $("#name").val().trim(),
@@ -24,53 +21,21 @@ $("#sendSurvey").on('click', function(event) {
 			newPerson.scores.push($("#question" + (i+1)).val());
 		}
 
-		// Get the list of friends prior to adding the new friend
-		$.get("/api/friends", function(data){
-			// Setup array to hold each person in the friendslist and their difference from the new friend
-			var matches = [];
+		// Post the new person's information then determine & display the best match
+		$.post("/api/friends", newPerson).then(function(data){
+		  	console.log(data);
+		  	if(data){
+				$("#match-perc").text(data.match.percent);
 
-			// Loop through friendsList to determine total difference between scores
-			for (var i = 0; i < data.length; i++) {
-				var totalDiff = 0;
-				for (var s = 0; s < 10; s++) {
-					if(newPerson.scores[s] !== data[i].scores[s]){
-						totalDiff += Math.abs(parseInt(newPerson.scores[s]) - parseInt(data[i].scores[s])); 
-					}
-				}
-				matches.push({person: i, difference: totalDiff});
+				$("#match-name").text(data.name);
+				$("#match-photo").attr({
+					"src": data.photo,
+					"alt": data.name
+				});
+
+			} else {
+				$("#match-name").text("Sorry, there is no match");
 			}
-
-			// Review the list of matches to determine match with the lowest difference (best match)
-			var bestMatch = {person: null, difference: highestDiff};
-			for (var i = 0; i < matches.length; i++) {
-				if(matches[i].difference < bestMatch.difference) {
-					bestMatch = {
-						person: matches[i].person, 
-						difference: matches[i].difference
-					}
-				}
-			}
-
-			// Use API to get the best match's name & photo; update the DOM
-			$.get("/api/friends/" + bestMatch.person, function(data){
-				if(data){
-					var matchPercentage = Math.round((highestDiff - bestMatch.difference) / highestDiff * 100);
-					$("#match-perc").text(matchPercentage);
-					$("#match-name").text(data.name);
-
-					$("#match-photo").attr({
-						"src": data.photo,
-						"alt": data.name
-					});
-				} else {
-					$("#match-name").text("Sorry, there is no match");
-				}
-			});
-
-			// Post the new person's information & write their data to the console
-			$.post("/api/friends", newPerson).then(function(data){
-			  	console.log('survey.html', data);
-			});
 		});
 	} else {
 		alert("You must respond to all fields before submitting.");
